@@ -1,0 +1,41 @@
+{
+  "name": "@nbrowser/nb-dispatch",
+  "version": "0.0.1",
+  "description": "nbrowser dispatch",
+  "keywords": [
+    "nbrowser",
+    "nbrowser-module",
+    "bridge",
+    "channel",
+    "dispatch"
+  ],
+  "homepage": "https://vis.nucleome.org",
+  "license": "BSD-3-Clause",
+  "author": {
+    "name": "Xiaopeng Zhu",
+    "url": "https://github.com/nimezhu"
+  },
+  "main": "dist/nb-dispatch.js",
+  "unpkg": "dist/nb-dispatch.min.js",
+  "jsdelivr": "dist/nb-dispatch.min.js",
+  "module": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nucleome/nb-dispatch.git"
+  },
+  "dependencies": {
+    "d3-dispatch": "^1.0.5"
+  },
+  "scripts": {
+    "pretest": "rollup -c",
+    "prepublishOnly": "rm -rf dist"
+  },
+  "devDependencies": {
+    "eslint": "5",
+    "rollup": "^0.64.1",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-terser": "1",
+    "tape": "4"
+  }
+}
