@@ -1,7 +1,7 @@
 {
-  "name": "@nbrowser/nb-dispatch",
+  "name": "@nucleome/nb-dispatch",
   "version": "0.0.1",
-  "description": "nbrowser dispatch",
+  "description": "nucleome browser dispatch",
   "keywords": [
     "nbrowser",
     "nbrowser-module",

@@ -1,27 +1,27 @@
-# @nucleome/nb-dipatch
+# @nucleome/nb-dispatch
 [![npm (scoped)](https://img.shields.io/npm/v/@nucleome/nb-dispatch.svg)](https://www.npmjs.com/package/@nucleome/nb-dispatch)
 [![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/@nucleome/nb-dispatch.svg)](https://github.com/nucleome/nb-dispatch)
 
-nb-dipatch is a cross-domain event dispatcher for [Nucleome Platform](http://doc.nucleome.org). nb-dipatch has the same initialize method and the same function interface "on" and "call" as [d3-dispatch](https://github.com/d3/d3-dispatch). 
+nb-dispatch is a cross-domain event dispatcher for [Nucleome Platform](http://doc.nucleome.org). nb-dispatch has the same initialize method and the same function interface "on" and "call" as [d3-dispatch](https://github.com/d3/d3-dispatch). 
 
-if user install our chrome extension [*Nucleome Bridge*](https://chrome.google.com/webstore/detail/djcdicpaejhpgncicoglfckiappkoeof), nb-dipatch will use *Nucleome Bridge* to send event emittion between tabs from multiple domains, otherwise, it will use web browser's *BroadCast dipatchnel* to send event emittion between tabs within the same domain.
+if user install our chrome extension [*Nucleome Bridge*](https://chrome.google.com/webstore/detail/djcdicpaejhpgncicoglfckiappkoeof), nb-dispatch will use *Nucleome Bridge* to send event emittion between tabs from multiple domains, otherwise, it will use web browser's *BroadCast dispatchnel* to send event emittion between tabs within the same domain.
 
-Our Web Application [Nucleome Browser](https://vis.nucleome.org) is connected with nb-dipatch.
+Our Web Application [Nucleome Browser](https://vis.nucleome.org) is connected with nb-dispatch.
 
 ## Connect 
 
-Connect to dipatchnel.
+Connect to dispatchnel.
 ```javascript
-import {dipatch} from "@nucleome/nb-dipatch";
-var c = dipatch("update","brush")
+import {dispatch} from "@nucleome/nb-dispatch";
+var c = dispatch("update","brush")
 var callback = function(status){
   console.log(status)
 }
 c.connect(callback)
 ```
-Listen to events in all dipatch connected tabs.
+Listen to events in all dispatch connected tabs.
 ```javascript
-//receive message from nucleome bridge or BroadCast dipatchnel.
+//receive message from nucleome bridge or BroadCast dispatchnel.
 
 c.on("update",function(d){
   //Add your code (user navigate to these genome coordinates in other tab, respond accordingly )
@@ -34,7 +34,7 @@ c.on("brush",function(d){
   //Add your code  (user brush these genome coordinates in other tab, respond accordingly )
 })
 ```
-Emit events to all dipatch connected tabs.
+Emit events to all dispatch connected tabs.
 ```javascript
 
 var regions = [{genome:"hg38",chr:"chr1",start:1,end:10000},{genome:"hg38",chr:"chr2",start:1,end:1000}]
@@ -46,13 +46,13 @@ c.call("brush",this,regions)
 
 
 ## Installing
-If you use NPM, `npm install @nucleome/nb-dipatch`.
+If you use NPM, `npm install @nucleome/nb-dispatch`.
 If you use in your webpage,
 ```html
-<script src="https://vis.nucleome.org/static/lib/nb-dipatch.min.js"></script>
+<script src="https://vis.nucleome.org/static/lib/nb-dispatch.min.js"></script>
 <script>
 
-var c = nb.dipatch();
+var c = nb.dispatch();
 c.connect(function(status){
     //add your code callback.
 });
@@ -75,9 +75,9 @@ If you want to your website can be connectable with *Nucleome Bridge*, Please co
 
 ## API Reference
 
-Check the connection status of dipatchnel
+Check the connection status of dispatchnel
 ```javascript
-  var c = nb.dipatch()
+  var c = nb.dispatch()
   c.connect(function(){
     console.log(c.status())
   }
