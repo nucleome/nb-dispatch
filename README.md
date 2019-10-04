@@ -60,6 +60,10 @@ c.connect(function(status){
 </script>
 
 ```
+## Test your code with CodePen
+*Nucleome Bridge* now support connection with codepen.
+Here is [a simple example](https://codepen.io/nimezhu/pen/bGGbXzE).
+
 ## Connect your web page with *Nucleome Bridge*
 *Nucleome Bridge* now support communication with UCSC Genome Browser and WashU EpiGenome Browser.
 
@@ -71,6 +75,7 @@ For user sharing their web pages, `https://bl.ocks.org/*` is also connectable wi
 We also have some demos in bl.ocks.org, here is [the link](https://bl.ocks.org/nb1page).
 
 If you want to your website can be connectable with *Nucleome Bridge*, Please contact [us](mailto:zhuxp@cmu.edu). 
+
 
 
 ## API Reference
@@ -89,4 +94,6 @@ pass data: regions = [region... ]
            region format {genome:string,chr:string,start:int,end:int}
 ```
 Start and end is defined as same as [bed format](https://genome.ucsc.edu/FAQ/FAQformat.html#format1). Start is 0-index. and end is not included in this region.
+
+
 
