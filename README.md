@@ -52,7 +52,7 @@ If you use in your webpage,
 <script src="https://vis.nucleome.org/static/lib/nb-dispatch.min.js"></script>
 <script>
 
-var c = nb.dispatch();
+var c = nb.dispatch("update","brush");
 c.connect(function(status){
     //add your code callback.
 });
@@ -60,9 +60,9 @@ c.connect(function(status){
 </script>
 
 ```
-## Test your code with CodePen
-*Nucleome Bridge* now support connection with codepen.
-Here is [a simple example](https://codepen.io/nimezhu/pen/bGGbXzE).
+## Test your code with CodePen or JSFiddle
+*Nucleome Bridge* now support connection with Codepen and JSFiddle.
+Here is [a collection of examples in Codepen](https://codepen.io/collection/DkGVYL/) and [a collection of example in JSfiddle](https://jsfiddle.net/user/nucleome/fiddles/).
 
 ## Connect your web page with *Nucleome Bridge*
 *Nucleome Bridge* now support communication with UCSC Genome Browser and WashU EpiGenome Browser.
@@ -82,7 +82,7 @@ If you want to your website can be connectable with *Nucleome Bridge*, Please co
 
 Check the connection status of dispatchnel
 ```javascript
-  var c = nb.dispatch()
+  var c = nb.dispatch("update","brush")
   c.connect(function(){
     console.log(c.status())
   }
