@@ -119,9 +119,10 @@ export default function() {
     return agent
 }
 
-function _connectExt(extId, _hub, status, callback, onclose) {
+function _connectExt(extId, chanId, _hub, status, callback, onclose) {
     var chromeExtPort = window.chrome.runtime.connect(
         extId)
+    chromeExtPort.postMessage({"chanId":chanId}) 
     _hub.on("sendMessage.apps", function(d) {
         chromeExtPort.postMessage(d) //send message to chromeExt
     })
@@ -188,7 +189,7 @@ function connect(chanId, extId, _hub, status, callback, onclose) {
     }
     try {
         window.chrome.runtime.sendMessage(chromeExtID, {
-                message: "version"
+                message: "version",
             },
             function(reply) {
                 if (reply) {
@@ -203,6 +204,6 @@ function connect(chanId, extId, _hub, status, callback, onclose) {
         connectChan()
     }
     var connectExt = function() {
-        _connectExt(extId, _hub, status, callback, onclose)
+        _connectExt(extId, chanId, _hub, status, callback, onclose)
     }
 }
