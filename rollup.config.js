@@ -7,7 +7,7 @@ const config = {
   input: "src/index.js",
   external: Object.keys(meta.dependencies || {}).filter(key => /^nb-/.test(key)),
   output: {
-    file: `dist/${meta.name}.js`,
+    file: `dist/nb-dispatch.js`,
     name: "nb",
     format: "umd",
     indent: false,
@@ -29,7 +29,7 @@ export default [
     ...config,
     output: {
       ...config.output,
-      file: `dist/${meta.name}.min.js`
+      file: `dist/nb-dispatch.min.js`
     },
     plugins: [
       ...config.plugins,

@@ -1,12 +1,10 @@
 {
   "name": "@nucleome/nb-dispatch",
-  "version": "0.0.2",
-  "description": "nucleome browser dispatch",
+  "version": "0.0.4",
+  "description": "nucleome dispatch",
   "keywords": [
-    "nbrowser",
-    "nbrowser-module",
+    "nucleome",
     "bridge",
-    "channel",
     "dispatch"
   ],
   "homepage": "https://vis.nucleome.org",
@@ -24,11 +22,11 @@
     "url": "https://github.com/nucleome/nb-dispatch.git"
   },
   "dependencies": {
-    "d3-dispatch": "^1.0.5"
+    "d3-dispatch": "^1.0.6"
   },
   "scripts": {
     "pretest": "rollup -c",
-    "prepublishOnly": "rm -rf dist"
+    "prepublishOnly": "rollup -c"
   },
   "devDependencies": {
     "eslint": "5",
@@ -36,6 +34,6 @@
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-terser": "1",
-    "tape": "4"
+    "tape": "^4.13.2"
   }
 }
