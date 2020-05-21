@@ -7,13 +7,31 @@ nb-dispatch is a cross-domain event dispatcher for [Nucleome Platform](http://do
 if user install our chrome extension [*Nucleome Bridge*](https://chrome.google.com/webstore/detail/djcdicpaejhpgncicoglfckiappkoeof), nb-dispatch will use *Nucleome Bridge* to send event emittion between tabs from multiple domains, otherwise, it will use web browser's *BroadCast dispatchnel* to send event emittion between tabs within the same domain.
 
 Our Web Application [Nucleome Browser](https://vis.nucleome.org) is connected with nb-dispatch.
+# Installing
+For web developer using npm,  
+`npm install @nucleome/nb-dispatch`.
 
-## Connect 
-
-Connect to cross-tab channel.
 ```javascript
 import {dispatch} from "@nucleome/nb-dispatch";
-var c = dispatch("update","brush")
+```
+For using nb-dispatch library in a webpage,
+
+```html
+<script src="https://unpkg.com/@nucleome/nb-dispatch"></script>
+<script>
+var c = nb.dispatch("update","brush");
+c.connect(function(status){
+    //add your code callback.
+});
+
+</script>
+
+```
+## Quick Examples
+
+Connect to cross-tab channel and check connection status.
+```javascript
+var c = nb.dispatch("update","brush")
 var callback = function(status){
   console.log(status)
 }
@@ -44,22 +62,6 @@ c.call("update",this,regions)
 c.call("brush",this,regions)
 ```
 
-
-## Installing
-If you use NPM, `npm install @nucleome/nb-dispatch`.
-If you use in your webpage,
-```html
-<script src="https://unpkg.com/@nucleome/nb-dispatch"></script>
-<script>
-
-var c = nb.dispatch("update","brush");
-c.connect(function(status){
-    //add your code callback.
-});
-
-</script>
-
-```
 ## Test your code with CodePen or JSFiddle
 *Nucleome Bridge* now support connection with Codepen and JSFiddle.
 Here is [a collection of examples in Codepen](https://codepen.io/collection/DkGVYL/) and [a collection of example in JSfiddle](https://jsfiddle.net/user/nucleome/fiddles/).
@@ -78,15 +80,8 @@ If you want to your website can be connectable with *Nucleome Bridge*, Please co
 
 
 
-## API Quick Start
+## Communication code
 
-Check the connection status of dispatch
-```javascript
-  var c = nb.dispatch("update","brush")
-  c.connect(function(){
-    console.log(c.status())
-  }
-```
 Currently, standard communication code
 ```
 event name: update and brush.
