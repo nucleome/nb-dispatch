@@ -2,7 +2,7 @@
 [![npm (scoped)](https://img.shields.io/npm/v/@nucleome/nb-dispatch.svg)](https://www.npmjs.com/package/@nucleome/nb-dispatch)
 [![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/@nucleome/nb-dispatch.svg)](https://github.com/nucleome/nb-dispatch)
 
-nb-dispatch is a cross-domain event dispatcher for [Nucleome Platform](http://doc.nucleome.org). nb-dispatch has the same initialize method and the same function interface "on" and "call" as [d3-dispatch](https://github.com/d3/d3-dispatch). 
+nb-dispatch is a cross-domain event dispatcher for [Nucleome Platform](http://doc.nucleome.org). 
 
 if user install our chrome extension [*Nucleome Bridge*](https://chrome.google.com/webstore/detail/djcdicpaejhpgncicoglfckiappkoeof), nb-dispatch will use *Nucleome Bridge* to send event emittion between tabs from multiple domains, otherwise, it will use web browser's *BroadCast dispatchnel* to send event emittion between tabs within the same domain.
 
@@ -97,16 +97,12 @@ pass data: regions = [region... ]
 Start and end is defined as same as [bed format](https://genome.ucsc.edu/FAQ/FAQformat.html#format1). Start is 0-index. and end is not included in this region.
 
 ## API Reference 
+nb-dispatch has the same initialize method and the same function interface "on" and "call" as [d3-dispatch](https://github.com/d3/d3-dispatch).
 
 \# nb.<b>dispatch</b>(<i>types…</i>) [<>](https://github.com/nucleome/nb-dispatch/blob/master/src/dispatch.js "Source")
 
 Creates a new dispatch for the specified event *types*. Each *type* is a string, such as `"update"` or `"brush"`.
 
-\# *dispatch*.<b>connect</b>(<i>callback</i>) 
-Connect Nucleome Bridge or BroadCast Channel 
-
-\# *dispatch*.<b>connect</b>(<i>callback</i>) 
-disconnect Nucleome Bridge or BroadCast Channel 
 
 \# *dispatch*.<b>on</b>(<i>typenames</i>[, <i>callback</i>]) 
 
@@ -118,4 +114,11 @@ The specified *typenames* is a string, such as `start` or `end.foo`. The type ma
 
 Like [*function*.call](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call), invokes each registered callback for the specified *type*, passing the callback the specified *arguments*, with *that* as the `this` context. 
 
+Besides, nb-dispatch has two other functions to connect and disconnect to cross-tab channels.
+
+\# *dispatch*.<b>connect</b>(<i>callback</i>) 
+Connect Nucleome Bridge or BroadCast Channel 
+
+\# *dispatch*.<b>connect</b>(<i>callback</i>) 
+disconnect Nucleome Bridge or BroadCast Channel 
 
