@@ -4,7 +4,7 @@
 
 nb-dispatch is a cross-domain event dispatcher for [Nucleome Platform](http://doc.nucleome.org). 
 
-if user install our chrome extension [*Nucleome Bridge*](https://chrome.google.com/webstore/detail/djcdicpaejhpgncicoglfckiappkoeof), nb-dispatch will use *Nucleome Bridge* to send event emittion between tabs from multiple domains, otherwise, it will use web browser's *BroadCast dispatchnel* to send event emittion between tabs within the same domain.
+if user install our chrome extension [*Nucleome Bridge*](https://chrome.google.com/webstore/detail/djcdicpaejhpgncicoglfckiappkoeof), nb-dispatch will use *Nucleome Bridge* to send event emittion between tabs from multiple domains, otherwise, it will use web browser's *BroadCast Channel* to send event emittion between tabs within the same domain.
 
 Our Web Application [Nucleome Browser](https://vis.nucleome.org) is connected with nb-dispatch.
 ## Installing
