@@ -37,7 +37,7 @@ c.on("brush",function(d){
 Emit events to all dispatch connected tabs.
 ```javascript
 
-var regions = [{genome:"hg38",chr:"chr1",start:1,end:10000},{genome:"hg38",chr:"chr2",start:1,end:1000}]
+var regions = [{genome:"hg38",chr:"chr1",start:1,end:10000, color: "#336289" },{genome:"hg38",chr:"chr2",start:1,end:1000}]
 
 c.call("update",this,regions)
 
@@ -91,7 +91,8 @@ Currently, standard communication code
 ```
 event name: update and brush.
 pass data: regions = [region... ]
-           region format {genome:string,chr:string,start:int,end:int}
+           region format {genome:string,chr:string,start:int,end:int, color:color}
+           color is optional
 ```
 Start and end is defined as same as [bed format](https://genome.ucsc.edu/FAQ/FAQformat.html#format1). Start is 0-index. and end is not included in this region.
 
