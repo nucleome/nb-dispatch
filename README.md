@@ -117,9 +117,9 @@ Like [*function*.call](https://developer.mozilla.org/en-US/docs/Web/JavaScript/R
 Besides, nb-dispatch has two other functions to connect and disconnect to cross-tab channels.
 
 \# *dispatch*.<b>connect</b>(<i>callback</i>) 
-Connect Nucleome Bridge or BroadCast Channel 
+connect Nucleome Bridge or BroadCast Channel 
 
-\# *dispatch*.<b>connect</b>(<i>callback</i>) 
+\# *dispatch*.<b>disconnect</b>(<i>callback</i>) 
 disconnect Nucleome Bridge or BroadCast Channel 
 
 \# *dispatch*.<b>status</b>() 
