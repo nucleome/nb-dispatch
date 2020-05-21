@@ -101,7 +101,9 @@ Creates a new dispatch for the specified event *types*. Each *type* is a string,
 
 Adds, removes or gets the *callback* for the specified *typenames*. If a *callback* function is specified, it is registered for the specified (fully-qualified) *typenames*. If a callback was already registered for the given *typenames*, the existing callback is removed before the new callback is added.
 
-The specified *typenames* is a string, such as `start` or `end.foo`. The type may be optionally followed by a period (`.`) and a name; the optional name allows multiple callbacks to be registered to receive events of the same type, such as `update.foo` and `update.bar`. 
+The specified *typenames* is a string, such as `start` or `end.foo`. The type may be optionally followed by a period (`.`) and a name; the optional name allows multiple callbacks to be registered to receive events of the same type, such as `update.foo` and `update.bar`. To specify multiple typenames, separate typenames with spaces, such as update brush or update.foo brush.bar.
+
+To remove a callback with update.foo, say dispatch.on("update.foo", null).
 
 \# *dispatch*.<b>call</b>(<i>type</i>[, <i>that</i>[, <i>arguments…</i>]]) 
 
