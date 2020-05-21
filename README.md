@@ -100,10 +100,11 @@ Start and end is defined as same as [bed format](https://genome.ucsc.edu/FAQ/FAQ
 \# nb.<b>dispatch</b>(<i>types…</i>) [<>](https://github.com/nucleome/nb-dispatch/blob/master/src/dispatch.js "Source")
 
 Creates a new dispatch for the specified event *types*. Each *type* is a string, such as `"update"` or `"brush"`.
-\# *dispatch*.<b>connect</b>(callback(s)) 
+
+\# *dispatch*.<b>connect</b>(<i>callback</i>) 
 Connect Nucleome Bridge or BroadCast Channel 
 
-\# *dispatch*.<b>connect</b>(callback(s)) 
+\# *dispatch*.<b>connect</b>(<i>callback</i>) 
 disconnect Nucleome Bridge or BroadCast Channel 
 
 \# *dispatch*.<b>on</b>(<i>typenames</i>[, <i>callback</i>]) 
