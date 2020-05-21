@@ -10,7 +10,7 @@ Our Web Application [Nucleome Browser](https://vis.nucleome.org) is connected wi
 
 ## Connect 
 
-Connect to dispatchnel.
+Connect to cross-tab channel.
 ```javascript
 import {dispatch} from "@nucleome/nb-dispatch";
 var c = dispatch("update","brush")
@@ -122,3 +122,5 @@ Connect Nucleome Bridge or BroadCast Channel
 \# *dispatch*.<b>connect</b>(<i>callback</i>) 
 disconnect Nucleome Bridge or BroadCast Channel 
 
+\# *dispatch*.<b>status</b>(<i>callback</i>) 
+check connect channel status ( dispatch.status().connection is one of "Extension","None","Channel" ) 
