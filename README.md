@@ -49,7 +49,7 @@ c.call("brush",this,regions)
 If you use NPM, `npm install @nucleome/nb-dispatch`.
 If you use in your webpage,
 ```html
-<script src="https://vis.nucleome.org/static/lib/nb-dispatch.min.js"></script>
+<script src="https://unpkg.com/@nucleome/nb-dispatch"></script>
 <script>
 
 var c = nb.dispatch("update","brush");
