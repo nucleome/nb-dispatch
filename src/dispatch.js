@@ -33,9 +33,7 @@ export default function() {
         onchange();
     }
     var agent = function() {
-        //TODO Call Agent
     }
-    
     agent.connect = function(_) {
         if (typeof _ == "function") {
             connect(chanId, extId, hub, status, function(d) {
@@ -79,29 +77,37 @@ export default function() {
         return arguments.length ? (onchange = _, agent) : onchange;
     }
     //V1 API
-    agent.on = function(m, f) {
-        var a = m.split(".")
-        var m0 = a[0] || ""
-        //check status??
-        if (m0 === "sendMessage" || m0 === "receiveMessage") {
-            hub.on(m, f)
-        } else {
-            // codebook
-            // Add Code Book Wrapper for Receive Message Interface
-            // Extend d3 hub 
-            // user interface:
-            // agent.on("code.x",function(data){})
-            // translate to
-            // agent.on("receiveMessage.code.x",function({"code":code,data:JSON.stringify(data)}))
-            hub.on("receiveMessage".concat(".").concat(m), function(d) {
-                if (d.code === m0) {
-                    f(JSON.parse(d.data))
+    // TODO local dispatch  
+    agent.on = function(M, f) {
+        M.split(" ").forEach(function(m) {
+            var a = m.split(".")
+            var m0 = a[0] || ""
+            if (m0.length == 0) return
+            if (m0 === "sendMessage" || m0 === "receiveMessage") {
+                hub.on(m, f)
+            } else {
+                // codebook
+                // Add Code Book Wrapper for Receive Message Interface
+                // Extend d3 hub 
+                // user interface:
+                // agent.on("code.x",function(data){})
+                // translate to
+                // agent.on("receiveMessage.code.x",function({"code":code,data:JSON.stringify(data)}))
+                if (f == null) {
+                    hub.on("receiveMessage".concat(".").concat(m), f)
+                    _dispatch.on(m, f)
+                } else {
+                    hub.on("receiveMessage".concat(".").concat(m), function(d) {
+                        if (d.code === m0) {
+                            f(JSON.parse(d.data))
+                        }
+                    })
+                    _dispatch.on(m, function(d) {
+                        f(d)
+                    })
                 }
-            })
-            _dispatch.on(m, function(d) {
-                f(d)
-            })
-        }
+            }
+        })
     }
     agent.call = function(code, self, data) {
         if (code === "sendMessage" || code === "receiveMessage") {
@@ -111,18 +117,18 @@ export default function() {
                 "code": code,
                 data: JSON.stringify(data)
             })
-            //local call
             _dispatch.call(code, self, data)
         }
     }
-    // TODO: Add Share Worker (share worker js) in case BroadcastChannel not support.
     return agent
 }
 
 function _connectExt(extId, chanId, _hub, status, callback, onclose) {
     var chromeExtPort = window.chrome.runtime.connect(
         extId)
-    chromeExtPort.postMessage({"chanId":chanId}) 
+    chromeExtPort.postMessage({
+        "chanId": chanId
+    })
     _hub.on("sendMessage.apps", function(d) {
         chromeExtPort.postMessage(d) //send message to chromeExt
     })
