@@ -78,9 +78,9 @@ If you want to your website can be connectable with *Nucleome Bridge*, Please co
 
 
 
-## API Reference
+## API Quick Start
 
-Check the connection status of dispatchnel
+Check the connection status of dispatch
 ```javascript
   var c = nb.dispatch("update","brush")
   c.connect(function(){
@@ -95,5 +95,25 @@ pass data: regions = [region... ]
 ```
 Start and end is defined as same as [bed format](https://genome.ucsc.edu/FAQ/FAQformat.html#format1). Start is 0-index. and end is not included in this region.
 
+## API Reference 
+
+# nb.<b>dispatch</b>(<i>types…</i>) [<>](https://github.com/nucleome/nb-dispatch/blob/master/src/dispatch.js "Source")
+
+Creates a new dispatch for the specified event *types*. Each *type* is a string, such as `"update"` or `"brush"`.
+# *dispatch*.<b>connect</b>(callback(s)) 
+Connect Nucleome Bridge or BroadCast Channel 
+
+# *dispatch*.<b>connect</b>(callback(s)) 
+disconnect Nucleome Bridge or BroadCast Channel 
+
+# *dispatch*.<b>on</b>(<i>typenames</i>[, <i>callback</i>]) 
+
+Adds, removes or gets the *callback* for the specified *typenames*. If a *callback* function is specified, it is registered for the specified (fully-qualified) *typenames*. If a callback was already registered for the given *typenames*, the existing callback is removed before the new callback is added.
+
+The specified *typenames* is a string, such as `start` or `end.foo`. The type may be optionally followed by a period (`.`) and a name; the optional name allows multiple callbacks to be registered to receive events of the same type, such as `update.foo` and `update.bar`. 
+
+# *dispatch*.<b>call</b>(<i>type</i>[, <i>that</i>[, <i>arguments…</i>]]) 
+
+Like [*function*.call](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call), invokes each registered callback for the specified *type*, passing the callback the specified *arguments*, with *that* as the `this` context. 
 
 
