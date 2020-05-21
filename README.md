@@ -8,9 +8,7 @@ if user install our chrome extension [*Nucleome Bridge*](https://chrome.google.c
 
 Our Web Application [Nucleome Browser](https://vis.nucleome.org) is connected with nb-dispatch.
 ## Installing
-For web developer using npm,  
-`npm install @nucleome/nb-dispatch`.
-
+For using npm,  
 ```javascript
 import {dispatch} from "@nucleome/nb-dispatch";
 ```
