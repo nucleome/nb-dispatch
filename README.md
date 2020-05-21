@@ -120,3 +120,10 @@ disconnect Nucleome Bridge or BroadCast Channel
 \# *dispatch*.<b>status</b>() 
 
 check connect channel status ( dispatch.status().connection is one of "Extension","None","Channel" ) 
+
+\# *dispatch*.<b>chanId</b>(<i>channelName</i>)
+
+set connect channel id , use before <b>connect<b>. 
+if no arguments, get current channel id. 
+default channel id : "cnbChan01"
+ 
