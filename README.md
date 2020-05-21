@@ -107,7 +107,7 @@ The specified *typenames* is a string, such as `start` or `end.foo`. The type ma
 
 Like [*function*.call](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call), invokes each registered callback for the specified *type*, passing the callback the specified *arguments*, with *that* as the `this` context. 
 
-Besides, nb-dispatch has two other functions to connect and disconnect to cross-tab channels.
+The following is nb-dispatch functions for communication channels which is different from d3-dispatch.
 
 \# *dispatch*.<b>connect</b>(<i>callback</i>) 
 
