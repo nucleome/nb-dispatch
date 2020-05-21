@@ -122,5 +122,5 @@ Connect Nucleome Bridge or BroadCast Channel
 \# *dispatch*.<b>connect</b>(<i>callback</i>) 
 disconnect Nucleome Bridge or BroadCast Channel 
 
-\# *dispatch*.<b>status</b>(<i>callback</i>) 
+\# *dispatch*.<b>status</b>() 
 check connect channel status ( dispatch.status().connection is one of "Extension","None","Channel" ) 
