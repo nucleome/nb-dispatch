@@ -1,6 +1,6 @@
 {
   "name": "@nucleome/nb-dispatch",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "nucleome dispatch",
   "keywords": [
     "nucleome",
@@ -22,7 +22,8 @@
     "url": "https://github.com/nucleome/nb-dispatch.git"
   },
   "dependencies": {
-    "d3-dispatch": "^1.0.6"
+    "d3-dispatch": "^1.0.6",
+    "uuid": "^8.3.0"
   },
   "scripts": {
     "pretest": "rollup -c",

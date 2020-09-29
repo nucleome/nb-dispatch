@@ -1,7 +1,6 @@
 import {
     dispatch
 } from "d3-dispatch"
-
 export default function() {
     var extId = "djcdicpaejhpgncicoglfckiappkoeof"
     var chanId = "cnbChan01"
@@ -32,8 +31,7 @@ export default function() {
     var onclose = function() {
         onchange();
     }
-    var agent = function() {
-    }
+    var agent = function() {}
     agent.connect = function(_) {
         if (typeof _ == "function") {
             connect(chanId, extId, hub, status, function(d) {
@@ -99,6 +97,7 @@ export default function() {
                 } else {
                     hub.on("receiveMessage".concat(".").concat(m), function(d) {
                         if (d.code === m0) {
+                            //TODO 
                             f(JSON.parse(d.data))
                         }
                     })
@@ -111,12 +110,14 @@ export default function() {
     }
     agent.call = function(code, self, data) {
         if (code === "sendMessage" || code === "receiveMessage") {
-            hub.call(code, self, data)
+            console.log("just send message", code,data)
+            hub.call(code, self,data)
         } else {
             hub.call("sendMessage", self, {
                 "code": code,
-                data: JSON.stringify(data)
+                data: JSON.stringify(data),
             })
+            //data._uuid_ = uuid
             _dispatch.call(code, self, data)
         }
     }
@@ -133,12 +134,13 @@ function _connectExt(extId, chanId, _hub, status, callback, onclose) {
         chromeExtPort.postMessage(d) //send message to chromeExt
     })
     chromeExtPort.onMessage.addListener(function(d) {
+        var newD = {
+            ...d,
+            data: JSON.stringify(d.data)
+        }
         _hub.call("receiveMessage",
-            this, {
-                code: d.code,
-                data: JSON.stringify(
-                    d.data)
-            });
+            this, newD
+        );
     })
     chromeExtPort.onDisconnect.addListener(function(e) {
         console.log("disconnect to extension ", extId)
