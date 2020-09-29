@@ -1,6 +1,10 @@
 import {
     dispatch
 } from "d3-dispatch"
+//import randomString from "./randomString"
+import {
+    v4 as uuidv4
+} from "uuid"
 export default function() {
     var extId = "djcdicpaejhpgncicoglfckiappkoeof"
     var chanId = "cnbChan01"
@@ -110,12 +114,12 @@ export default function() {
     }
     agent.call = function(code, self, data) {
         if (code === "sendMessage" || code === "receiveMessage") {
-            console.log("just send message", code,data)
             hub.call(code, self,data)
         } else {
             hub.call("sendMessage", self, {
                 "code": code,
                 data: JSON.stringify(data),
+                "_uuid_": uuidv4() //simple uuid
             })
             //data._uuid_ = uuid
             _dispatch.call(code, self, data)

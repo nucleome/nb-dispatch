@@ -1,41 +1,38 @@
 {
-  "name": "@nucleome/nb-dispatch",
-  "version": "0.0.6",
-  "description": "nucleome dispatch",
-  "keywords": [
-    "nucleome",
-    "bridge",
-    "dispatch"
-  ],
-  "homepage": "https://vis.nucleome.org",
-  "license": "BSD-3-Clause",
-  "author": {
-    "name": "Xiaopeng Zhu",
-    "url": "https://github.com/nimezhu"
-  },
-  "main": "dist/nb-dispatch.js",
-  "unpkg": "dist/nb-dispatch.min.js",
-  "jsdelivr": "dist/nb-dispatch.min.js",
-  "module": "src/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nucleome/nb-dispatch.git"
-  },
-  "dependencies": {
-    "d3-dispatch": "^1.0.6",
-    "uuid": "^8.3.0"
-  },
-  "scripts": {
-    "pretest": "rollup -c",
-    "build": "rollup -c",
-    "prepublishOnly": "rollup -c"
-  },
-  "devDependencies": {
-    "eslint": "5",
-    "rollup": "^0.64.1",
-    "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-node-resolve": "^4.2.3",
-    "rollup-plugin-terser": "1",
-    "tape": "^4.13.2"
-  }
+    "name": "@nucleome/nb-dispatch",
+    "version": "0.0.8",
+    "description": "nucleome dispatch",
+    "keywords": [
+        "nucleome",
+        "bridge",
+        "dispatch"
+    ],
+    "homepage": "https://vis.nucleome.org",
+    "license": "BSD-3-Clause",
+    "author": {
+        "name": "Xiaopeng Zhu",
+        "url": "https://github.com/nimezhu"
+    },
+    "main": "dist/nb-dispatch.js",
+    "unpkg": "dist/nb-dispatch.js",
+    "jsdelivr": "dist/nb-dispatch.js",
+    "module": "src/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nucleome/nb-dispatch.git"
+    },
+    "dependencies": {
+        "crypto": "^1.0.1",
+        "d3-dispatch": "^1.0.6",
+        "uuid": "^8.3.0"
+    },
+    "scripts": {
+        "build": "webpack --mode production -c",
+        "dev": "webpack --mode development -c"
+    },
+    "devDependencies": {
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.10"
+
+    }
 }
