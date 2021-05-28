@@ -100,8 +100,21 @@ export default function() {
                     _dispatch.on(m, f)
                 } else {
                     hub.on("receiveMessage".concat(".").concat(m), function(d) {
-                        if (d.code === m0) {
-                            //TODO 
+                        //compatible with reflexiv
+                        if (typeof d == "string") {
+                            try {
+                                var k = JSON.parse(d)
+                                if (k.code && k.code === m0) {
+                                    if (k.data && typeof k.data == "string") {
+                                        f(JSON.parse(k.data))
+                                    } else {
+                                        f(k.data)
+                                    }
+                                }
+                            } catch(e) {
+
+                            }
+                        } else if (d.code === m0) {
                             f(JSON.parse(d.data))
                         }
                     })
@@ -163,7 +176,7 @@ function _connectExt(extId, chanId, _hub, status, callback, onclose) {
 }
 
 
-function _connectChan(channel, _hub, status, callback) {
+function _connectChan(channel, _hub, status, callback, onclose) {
     try {
         var chan = new BroadcastChannel(channel)
         _hub.on("sendMessage.chan", function(d) {
@@ -197,7 +210,7 @@ function connect(chanId, extId, _hub, status, callback, onclose) {
     //var hasExtension
     var channel = chanId
     var connectChan = function() {
-        _connectChan(channel, _hub, status, callback)
+        _connectChan(channel, _hub, status, callback, onclose)
     }
     try {
         window.chrome.runtime.sendMessage(chromeExtID, {
