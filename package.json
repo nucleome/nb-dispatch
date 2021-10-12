@@ -1,6 +1,6 @@
 {
     "name": "@nucleome/nb-dispatch",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "nucleome dispatch",
     "keywords": [
         "nucleome",
@@ -22,7 +22,6 @@
         "url": "https://github.com/nucleome/nb-dispatch.git"
     },
     "dependencies": {
-        "crypto": "^1.0.1",
         "d3-dispatch": "^1.0.6",
         "uuid": "^8.3.0"
     },
