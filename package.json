@@ -1,6 +1,6 @@
 {
     "name": "@nucleome/nb-dispatch",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "description": "nucleome dispatch",
     "keywords": [
         "nucleome",
@@ -25,9 +25,6 @@
         "d3-dispatch": "^1.0.6",
         "uuid": "^8.3.0"
     },
-    "files": [
-        "dist/nb-dispatch.js"
-    ],
     "scripts": {
         "build": "webpack --mode production -c",
         "dev": "webpack --mode development -c"
