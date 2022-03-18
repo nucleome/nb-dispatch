@@ -1,6 +1,6 @@
 {
     "name": "@nucleome/nb-dispatch",
-    "version": "0.0.13",
+    "version": "0.1.0",
     "description": "nucleome dispatch",
     "keywords": [
         "nucleome",
@@ -22,16 +22,15 @@
         "url": "https://github.com/nucleome/nb-dispatch.git"
     },
     "dependencies": {
-        "d3-dispatch": "^1.0.6",
+        "d3-dispatch": "^3.0.0",
         "uuid": "^8.3.0"
     },
     "scripts": {
-        "build": "webpack --mode production -c",
-        "dev": "webpack --mode development -c"
+        "build": "webpack --mode production --config webpack.config.js",
+        "dev": "webpack --mode development --config webpack.config.js"
     },
     "devDependencies": {
-        "webpack": "^4.43.0",
-        "webpack-cli": "^3.3.10"
-
+        "webpack": "^5.0.0",
+        "webpack-cli": "^4.9.0"
     }
 }
