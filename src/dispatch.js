@@ -1,7 +1,10 @@
 import {
     dispatch
 } from "d3-dispatch"
-
+//import randomString from "./randomString"
+import {
+    v4 as uuidv4
+} from "uuid"
 export default function() {
     var extId = "djcdicpaejhpgncicoglfckiappkoeof"
     var chanId = "cnbChan01"
@@ -32,8 +35,7 @@ export default function() {
     var onclose = function() {
         onchange();
     }
-    var agent = function() {
-    }
+    var agent = function() {}
     agent.connect = function(_) {
         if (typeof _ == "function") {
             connect(chanId, extId, hub, status, function(d) {
@@ -98,7 +100,21 @@ export default function() {
                     _dispatch.on(m, f)
                 } else {
                     hub.on("receiveMessage".concat(".").concat(m), function(d) {
-                        if (d.code === m0) {
+                        //compatible with reflexiv
+                        if (typeof d == "string") {
+                            try {
+                                var k = JSON.parse(d)
+                                if (k.code && k.code === m0) {
+                                    if (k.data && typeof k.data == "string") {
+                                        f(JSON.parse(k.data))
+                                    } else {
+                                        f(k.data)
+                                    }
+                                }
+                            } catch(e) {
+
+                            }
+                        } else if (d.code === m0) {
                             f(JSON.parse(d.data))
                         }
                     })
@@ -111,12 +127,14 @@ export default function() {
     }
     agent.call = function(code, self, data) {
         if (code === "sendMessage" || code === "receiveMessage") {
-            hub.call(code, self, data)
+            hub.call(code, self,data)
         } else {
             hub.call("sendMessage", self, {
                 "code": code,
-                data: JSON.stringify(data)
+                data: JSON.stringify(data),
+                "_uuid_": uuidv4() //simple uuid
             })
+            //data._uuid_ = uuid
             _dispatch.call(code, self, data)
         }
     }
@@ -133,12 +151,13 @@ function _connectExt(extId, chanId, _hub, status, callback, onclose) {
         chromeExtPort.postMessage(d) //send message to chromeExt
     })
     chromeExtPort.onMessage.addListener(function(d) {
+        var newD = {
+            ...d,
+            data: JSON.stringify(d.data)
+        }
         _hub.call("receiveMessage",
-            this, {
-                code: d.code,
-                data: JSON.stringify(
-                    d.data)
-            });
+            this, newD
+        );
     })
     chromeExtPort.onDisconnect.addListener(function(e) {
         console.log("disconnect to extension ", extId)
@@ -157,7 +176,7 @@ function _connectExt(extId, chanId, _hub, status, callback, onclose) {
 }
 
 
-function _connectChan(channel, _hub, status, callback, err) {
+function _connectChan(channel, _hub, status, callback, onclose) {
     try {
         var chan = new BroadcastChannel(channel)
         _hub.on("sendMessage.chan", function(d) {
@@ -175,14 +194,12 @@ function _connectChan(channel, _hub, status, callback, err) {
         })
         status.connection = "Channel"
         status.id = channel
-        status.err = err
         callback(status)
 
     } catch (e) {
         console.log("your browser doesn't support BroadCastChannel")
         status.connection = "No Connection"
         status.id = ""
-        status.err = e
         callback(status)
     }
 }
@@ -192,8 +209,8 @@ function connect(chanId, extId, _hub, status, callback, onclose) {
     var chromeExtID = extId
     //var hasExtension
     var channel = chanId
-    var connectChan = function(e) {
-        _connectChan(channel, _hub, status, callback,e)
+    var connectChan = function() {
+        _connectChan(channel, _hub, status, callback, onclose)
     }
     try {
         window.chrome.runtime.sendMessage(chromeExtID, {
@@ -209,9 +226,7 @@ function connect(chanId, extId, _hub, status, callback, onclose) {
                 }
             });
     } catch (e) {
-        //console.log("not able to connect to extension",e)
-        //throw JSON.stringify({data:e})
-        connectChan(e)
+        connectChan()
     }
     var connectExt = function() {
         _connectExt(extId, chanId, _hub, status, callback, onclose)
